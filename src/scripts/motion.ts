@@ -316,6 +316,8 @@ function faq() {
 // inicialización se difiere a `requestIdleCallback` para que el browser
 // pinte el lede y los CTAs primero; la animación aparece después,
 // cuando el thread está libre.
+// process() se removió del boot: la sección Proceso ya no existe en
+// index.astro, así que su función quedaría como no-op.
 const bootMotion = () => {
   arm();
   hero();
