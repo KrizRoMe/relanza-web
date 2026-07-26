@@ -1,0 +1,117 @@
+---
+import Mark from './Mark.astro';
+
+const links = [
+  { href: '#comparador', label: 'Antes / Después' },
+  { href: '#diagnostico', label: 'Diagnóstico' },
+  { href: '#costo', label: 'Costo' },
+  { href: '#casos', label: 'Casos' },
+  { href: '#preguntas', label: 'Preguntas' },
+];
+---
+
+<header
+  data-nav
+  data-solid="false"
+  class="fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(.22,1,.36,1)] data-[solid=true]:border-b data-[solid=true]:border-line data-[solid=true]:bg-paper/95 data-[solid=true]:backdrop-blur-md"
+>
+  <div
+    data-progress
+    class="absolute inset-x-0 top-0 h-px origin-left bg-brass/70"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="shell flex h-[4.5rem] items-center justify-between gap-4">
+    <Mark />
+
+    <nav aria-label="Secciones" class="hidden items-center gap-9 md:flex">
+      {
+        links.map((l) => (
+          <a href={l.href} class="link-draw text-[0.875rem] text-ink-soft hover:text-ink">
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="#contacto-form" class="btn-base btn-solid !h-11 !px-4 !text-sm sm:!px-5">
+        <span class="sm:hidden">Diagnóstico</span>
+        <span class="hidden sm:inline">Solicitar diagnóstico</span>
+      </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-controls="nav-index"
+        aria-expanded="false"
+        class="ficha grid h-11 shrink-0 place-items-center border border-line-strong px-4 text-ink transition-colors duration-300 hover:border-ink md:hidden"
+      >
+        Índice
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  id="nav-index"
+  hidden
+  class="fixed inset-0 z-[60] flex flex-col bg-paper opacity-0 transition-opacity duration-400 ease-[cubic-bezier(.22,1,.36,1)] md:hidden"
+>
+  <div class="shell flex h-[4.5rem] shrink-0 items-center justify-between border-b border-line">
+    <Mark />
+    <button
+      id="nav-dismiss"
+      type="button"
+      class="ficha grid h-11 shrink-0 place-items-center border border-line-strong px-4 text-ink"
+    >
+      Cerrar
+    </button>
+  </div>
+  <nav aria-label="Índice del sitio" class="shell flex flex-1 flex-col justify-center gap-1 py-10">
+    {
+      links.map((l, i) => (
+        <a
+          href={l.href}
+          class="flex items-baseline gap-5 border-b border-line py-5 text-[1.75rem] leading-none tracking-[-0.032em]"
+        >
+          <span class="ficha text-walnut">{String(i + 1).padStart(2, '0')}</span>
+          {l.label}
+        </a>
+      ))
+    }
+    <a href="#contacto-form" class="btn-base btn-solid mt-10 w-full">Solicitar diagnóstico</a>
+  </nav>
+</div>
+
+<script>
+  const panel = document.getElementById('nav-index');
+  const toggle = document.getElementById('nav-toggle');
+  const dismiss = document.getElementById('nav-dismiss');
+
+  const open = () => {
+    if (!panel) return;
+    panel.hidden = false;
+    document.documentElement.dataset.overlayOpen = 'true';
+    document.body.style.overflow = 'hidden';
+    toggle?.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => (panel.style.opacity = '1'));
+    panel.querySelector<HTMLAnchorElement>('a')?.focus();
+  };
+
+  const close = () => {
+    if (!panel) return;
+    panel.style.opacity = '0';
+    document.documentElement.dataset.overlayOpen = 'false';
+    document.body.style.overflow = '';
+    toggle?.setAttribute('aria-expanded', 'false');
+    window.setTimeout(() => (panel.hidden = true), 320);
+  };
+
+  toggle?.addEventListener('click', open);
+  dismiss?.addEventListener('click', close);
+  panel?.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel && !panel.hidden) close();
+  });
+</script>

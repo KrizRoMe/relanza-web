@@ -1,0 +1,41 @@
+---
+/**
+ * Marca Relanza Web. El signo es la costura: un bloque partido en dos,
+ * la mitad vieja en papel y la mitad relanzada en latón.
+ */
+interface Props {
+  invert?: boolean;
+  class?: string;
+}
+const { invert = false, class: klass = '' } = Astro.props;
+---
+
+<a
+  href="#top"
+  class:list={['group inline-flex items-center gap-3', klass]}
+  aria-label="Relanza Web, ir al inicio"
+>
+  <span
+    class:list={[
+      'relative grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-[2px]',
+      invert ? 'bg-paper' : 'bg-ink',
+    ]}
+  >
+    <span
+      class:list={[
+        'absolute top-[5px] bottom-[5px] left-[6px] w-[6px] transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:-translate-x-[2px]',
+        invert ? 'bg-ink' : 'bg-paper',
+      ]}></span>
+    <span
+      class="absolute top-[5px] bottom-[5px] left-[15px] w-[6px] bg-brass transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:translate-x-[2px]"
+    ></span>
+  </span>
+  <span
+    class:list={[
+      'text-[0.9375rem] leading-none font-medium tracking-[-0.01em]',
+      invert ? 'text-paper' : 'text-ink',
+    ]}
+  >
+    Relanza<span class:list={[invert ? 'text-brass' : 'text-walnut']}>Web</span>
+  </span>
+</a>

@@ -1,0 +1,44 @@
+---
+const pares = [
+  { antes: 'Explicas a qué te dedicas', ahora: 'Se entiende en cinco segundos' },
+  { antes: 'Compites por precio', ahora: 'Compites por criterio' },
+  { antes: 'El sitio pesa y se arrastra', ahora: 'Abre antes de que te juzguen' },
+  { antes: 'Las visitas se pierden', ahora: 'Las visitas escriben' },
+  { antes: 'Evitas pasar el enlace', ahora: 'El enlace abre puertas' },
+  { antes: 'Tu web te representaba en 2015', ahora: 'Tu web te representa hoy' },
+];
+---
+
+<section id="cambio" class="bg-pine text-paper">
+  <div class="shell band">
+    <div class="grid gap-14 md:grid-cols-[0.92fr_1.08fr] md:gap-20">
+      <div class="md:sticky md:top-32 md:self-start">
+        <p class="ficha text-brass-lift" data-reveal>El cambio</p>
+        <h2 class="display mt-6 max-w-[16ch] text-paper" data-words>
+          Lo que cambia no es el diseño. Es lo que concluyen de ti.
+        </h2>
+        <p class="body-copy mt-10 max-w-[36ch] text-on-pine" data-reveal>
+          Un sitio relanzado no vende más porque sea bonito. Vende más porque elimina las dudas que
+          antes aparecían sin que nadie las dijera en voz alta.
+        </p>
+      </div>
+
+      <ul>
+        {
+          pares.map((p) => (
+            <li class="group border-t border-line-inv py-7 md:py-9" data-reveal="wipe">
+              <p class="ficha flex items-center gap-3 text-on-pine">
+                <span class="h-px w-4 bg-brass-lift" aria-hidden="true" />
+                Antes — {p.antes}
+              </p>
+              <p class="mt-4 text-[1.75rem] leading-[1.1] tracking-[-0.032em] text-paper transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:translate-x-1.5 md:text-[2.25rem]">
+                {p.ahora}
+              </p>
+            </li>
+          ))
+        }
+        <li class="border-t border-line-inv"></li>
+      </ul>
+    </div>
+  </div>
+</section>

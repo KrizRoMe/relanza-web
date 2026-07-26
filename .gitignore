@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+.output/
+
+# Astro
+.astro/
+
+# Vercel
+.vercel/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Playwright
+.playwright-cli/
+.vercel
+.env*

@@ -1,0 +1,70 @@
+---
+const pasos = [
+  {
+    n: '01',
+    t: 'Diagnóstico',
+    d: 'Revisamos tu sitio como lo revisa alguien que no te conoce: en el celular, con prisa y con dudas. Sale un informe corto con lo que hoy te resta valor y por qué.',
+    e: 'Entregable — Informe de diagnóstico',
+  },
+  {
+    n: '02',
+    t: 'Dirección',
+    d: 'Definimos la imagen que corresponde al negocio que hoy tienes: tipografía, color, jerarquía y tono. Se aprueba antes de escribir una sola línea de código.',
+    e: 'Entregable — Dirección visual aprobada',
+  },
+  {
+    n: '03',
+    t: 'Relanzamiento',
+    d: 'Reconstruimos el sitio con tu propio contenido. Rápido, accesible, pensado para el celular primero y sin nada que sobre en pantalla.',
+    e: 'Entregable — Sitio nuevo en línea',
+  },
+  {
+    n: '04',
+    t: 'Continuidad',
+    d: 'Te entregamos el sitio y la forma de mantenerlo vivo: cambiar un texto, sumar un servicio o publicar algo nuevo sin depender de nadie.',
+    e: 'Entregable — Guía de mantenimiento',
+  },
+];
+---
+
+<section
+  id="proceso"
+  data-track-section
+  class="relative overflow-hidden border-t border-line bg-surface lg:h-svh"
+>
+  <div class="flex h-full items-stretch">
+    <div data-track class="flex w-full flex-col lg:w-max lg:flex-row lg:items-stretch">
+      <div
+        data-track-intro
+        class="shell flex shrink-0 flex-col justify-center pt-24 pb-4 lg:h-svh lg:w-[38rem] lg:pt-0 lg:pb-0"
+      >
+        <p class="ficha text-walnut" data-reveal>Proceso</p>
+        <h2 class="display mt-6 max-w-[15ch]" data-reveal>Cuatro pasos. Ninguna sorpresa.</h2>
+        <p class="body-copy mt-8 max-w-[38ch] text-ink-soft" data-reveal>
+          Cada paso termina en algo que puedes ver y aprobar. Nunca hay una etapa en la que el
+          proyecto desaparezca durante semanas.
+        </p>
+        <p class="ficha mt-10 hidden items-center gap-3 text-ink-soft lg:flex" aria-hidden="true">
+          <span class="h-px w-10 bg-brass"></span> Sigue bajando
+        </p>
+      </div>
+
+      {
+        pasos.map((p) => (
+          <article
+            data-track-panel
+            class="group shrink-0 border-t border-line px-6 py-12 first-of-type:border-t md:px-10 lg:h-svh lg:w-[26rem] lg:border-t-0 lg:border-l lg:py-0 lg:px-12 lg:flex lg:flex-col lg:justify-center xl:w-[30rem]"
+          >
+            <p class="ficha text-walnut">{p.n}</p>
+            <h3 class="mt-6 text-[2rem] leading-[1.05] tracking-[-0.035em] md:text-[2.5rem]">
+              {p.t}
+            </h3>
+            <div class="mt-7 h-px w-full origin-left bg-line" data-reveal="rule" />
+            <p class="body-copy mt-7 max-w-[34ch] text-ink-soft">{p.d}</p>
+            <p class="ficha mt-9 text-ink-soft">{p.e}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

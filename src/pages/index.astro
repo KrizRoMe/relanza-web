@@ -1,0 +1,66 @@
+---
+/*
+  DIRECCIÓN — Relanza Web · superficie Persuade · dirección fijada por el brief
+
+  THESIS: La página es la demostración. Una costura vertical recorre toda la
+  experiencia y lo que la cruza pasa de 2015 a hoy. Rechaza el hero SaaS de
+  tres tarjetas con icono y el "antes/después" hecho con capturas de pantalla.
+
+  OWN-WORLD: Papel arena #F5F2EC impreso con reglas de 1px rgba(23,23,23,.08).
+  Un solo grotesco (Geist) en dos registros: display hasta 8rem con tracking
+  -0.04em, y mono en versalitas como ficha técnica. El color entra como campo
+  completo —pino #44584F y tinta #171717—, nunca como acento disperso; el latón
+  #B89A72 existe solo en la costura. Radio 2px, sombras casi inexistentes.
+
+  STORY: El visitante llega dudando de su propio sitio, arrastra la costura del
+  comparador y ve su problema resuelto en vivo; entiende que se conserva su
+  contenido y se reemplaza la forma; pide el diagnóstico.
+
+  FIRST VIEWPORT: Pantalla completa. Ficha superior con regla. Titular a dos
+  líneas, escala 8rem, con su versión de 2015 debajo: la costura lo relanza de
+  izquierda a derecha una sola vez. Bajada y dos acciones a la izquierda —la
+  primaria lleva al comparador—. Al pie, tres columnas de ficha con reglas.
+
+  FORM: Dirección fijada por el brief del cliente (paleta, tipografía,
+  estructura y comparador especificados); el rol del roll queda anulado por
+  esa fijación. Motivo elegido para unificarla: la costura de relanzamiento.
+*/
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Manifiesto from '../components/Manifiesto.astro';
+import ComparatorSection from '../components/ComparatorSection.astro';
+import Diagnostico from '../components/Diagnostico.astro';
+import Cambio from '../components/Cambio.astro';
+import Costo from '../components/Costo.astro';
+import Casos from '../components/Casos.astro';
+import Preguntas from '../components/Preguntas.astro';
+import Contacto from '../components/Contacto.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Base
+  title="Relanza Web — Tu negocio evolucionó. Tu sitio web también debería hacerlo."
+  description="Estudio de relanzamiento digital. Reconstruimos sitios web antiguos conservando tu marca y tu contenido, para que tu empresa se vea como lo que hoy es."
+>
+  <Nav />
+  <main>
+    <Hero />
+    <Manifiesto />
+    <ComparatorSection />
+    <Diagnostico />
+    <Cambio />
+    <Costo />
+    <Casos />
+    <Preguntas />
+    <Contacto />
+    <CtaFinal />
+  </main>
+  <WhatsAppButton />
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <script>
+    import '../scripts/motion';
+  </script>
+</Base>

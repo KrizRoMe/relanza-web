@@ -1,0 +1,49 @@
+---
+/**
+ * Plate en miniatura: la misma pieza que el comparador, reducida a su
+ * silueta. Al pasar el cursor, la costura recorre el plate y relanza.
+ */
+interface Props {
+  class?: string;
+}
+const { class: klass = '' } = Astro.props;
+---
+
+<div class:list={['mini', klass]} aria-hidden="true">
+  <div class="mini-layer mo">
+    <div class="mo-top"></div>
+    <div class="mo-nav"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="mo-body">
+      <div class="mo-side">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="mo-main">
+        <div class="h"></div>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span
+        ><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mo-foot"></div>
+  </div>
+
+  <div class="mini-layer mini-new-layer mn">
+    <div class="mn-top">
+      <div class="m"></div>
+      <div class="l"></div>
+      <div class="l"></div>
+      <div class="btn"></div>
+    </div>
+    <div class="mn-body">
+      <div class="k"></div>
+      <div class="h1"></div>
+      <div class="h2"></div>
+      <div class="p"></div>
+      <div class="p"></div>
+      <div class="cta"></div>
+    </div>
+    <div class="mn-rule"></div>
+    <div class="mn-panel"></div>
+  </div>
+
+  <div class="mini-seam"></div>
+</div>

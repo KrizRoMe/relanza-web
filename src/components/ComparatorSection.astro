@@ -1,0 +1,46 @@
+---
+import Comparator from './Comparator.tsx';
+---
+
+<section id="comparador" class="band border-t border-line bg-surface">
+  <div class="shell">
+    <div class="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-end md:gap-16">
+      <div>
+        <p class="ficha text-walnut" data-reveal>Antes / Después</p>
+        <h2 class="display mt-6 max-w-[19ch]" data-reveal>
+          El mismo negocio. La misma información. Otra empresa.
+        </h2>
+      </div>
+      <p class="body-copy text-ink-soft md:pb-2" data-reveal>
+        Un relanzamiento no agrega contenido: lo ordena. A la izquierda, un sitio como los que
+        seguimos encontrando en 2026. A la derecha, exactamente los mismos datos, con jerarquía,
+        aire y una sola acción clara.
+      </p>
+    </div>
+
+    <div class="mt-12 -mx-6 md:mx-0 md:mt-16" data-reveal="wipe">
+      <Comparator client:visible />
+    </div>
+
+    <div class="mt-10 grid border-t border-line sm:grid-cols-3">
+      {
+        [
+          ['Sin capturas', 'Los dos sitios están construidos en HTML y CSS, aquí mismo.'],
+          ['Mismo contenido', 'Nombre, año, líneas de producto, plazos, teléfono y aviso legal.'],
+          ['Distinta conclusión', 'Uno parece un archivo. El otro, una empresa vigente.'],
+        ].map(([k, v], i) => (
+          <div
+            class:list={[
+              'py-5 sm:py-6',
+              i > 0 && 'border-t border-line sm:border-t-0 sm:border-l sm:pl-6 md:pl-8',
+            ]}
+            data-reveal
+          >
+            <p class="ficha text-ink-soft">{k}</p>
+            <p class="mt-2.5 max-w-[34ch] text-[0.9375rem] leading-snug tracking-[-0.012em]">{v}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

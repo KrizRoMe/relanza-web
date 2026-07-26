@@ -1,0 +1,86 @@
+---
+/**
+ * Manifiesto — sección pineada con ScrollTrigger.
+ *
+ * Cuatro verdades que se relevan mientras la sección está fija. Es el
+ * momento de concentración entre el Hero y el Comparador: el visitante
+ * leyó la promesa, está por ver la prueba, y aquí se queda un instante
+ * en la certeza de por qué importa el relanzamiento.
+ *
+ * Restricciones de marca:
+ *  - Fondo pino (mismo campo que "El cambio"), papel y latón como únicos
+ *    acentos. Sin gradientes, sin iconos, sin tarjetas simétricas.
+ *  - Las cuatro frases se escriben en el mismo registro: una tesis corta
+ *    y una consecuencia de una línea. El ritmo manda.
+ *  - El pinning se desactiva en < 1024px (no hay espacio para scrollear
+ *    4 viewports en un celular) y con prefers-reduced-motion (las
+ *    cuatro verdades se apilan verticalmente, sin anclar).
+ */
+const steps = [
+  {
+    n: '01',
+    tag: 'El sitio',
+    title: 'Tu sitio no está viejito.',
+    desc: 'Está hablando por ti. Y lo que dice no es lo que hoy eres.',
+  },
+  {
+    n: '02',
+    tag: 'El visitante',
+    title: 'El cliente no lee.',
+    desc: 'Mira tres segundos y decide si vuelve mañana. Hay mucho en juego en esa primera capa.',
+  },
+  {
+    n: '03',
+    tag: 'El negocio',
+    title: 'No es un gasto. Es una recuperación.',
+    desc: 'Años de inversión valen más de lo que hoy comunica tu web. Recuperar esa primera impresión no es empezar de cero.',
+  },
+  {
+    n: '04',
+    tag: 'El método',
+    title: 'Es orden, no invento.',
+    desc: 'Tu negocio evolucionó. Tu sitio, no. Hacemos que la primera impresión coincida contigo, no con la versión que dejaste.',
+  },
+];
+---
+
+<section id="manifiesto" data-mf-section class="bg-pine text-paper">
+  <div class="mf-meta">
+    <p class="ficha text-brass-lift">Manifiesto</p>
+    <p class="ficha text-on-pine hidden md:block">Cuatro verdades · scroll para continuar</p>
+  </div>
+
+      <div data-mf-track class="mf-track">
+    {
+      steps.map((step) => (
+        <article class="mf-step">
+          <span class="mf-num ficha text-brass-lift">
+            <span class="h-px w-6 bg-brass-lift" aria-hidden="true" />
+            {step.n} — {step.tag}
+          </span>
+          <h2 class="display-lg mf-title text-paper">{step.title}</h2>
+          <span class="mf-rule" aria-hidden="true" />
+          <p class="lede mf-desc text-on-pine">{step.desc}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="mf-cta">
+    <p class="ficha text-brass-lift">Si te suena, escribinos</p>
+    <a href="#contacto-form" class="btn-base btn-invert">
+      Pedir mi diagnóstico
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+        <path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="mf-dots" aria-hidden="true">
+    {
+      steps.map((_, i) => (
+        <span class="mf-dot" data-mf-dot={i} />
+      ))
+    }
+  </div>
+</section>

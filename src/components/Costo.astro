@@ -1,0 +1,77 @@
+---
+/**
+ * El costo — tres cifras que pesan más que cualquier pitch.
+ *
+ * Adaptación del brief del cliente al contexto de Relanza Web: lo que
+ * importa no es la métrica cruda, sino la implicación para un negocio
+ * que aún no ha relanzado su sitio. Las cifras son las del brief; la
+ * voz es la del estudio.
+ *
+ * Sin tarjetas: la regla de 1px separa, no envuelve. La jerarquía
+ * la da el tamaño del número y el peso de la ficha, no un color
+ * de fondo.
+ */
+const costos = [
+  {
+    stat: '75%',
+    label: 'Credibilidad',
+    desc: 'Tres de cada cuatro visitantes juzgan a tu empresa por el aspecto de su sitio antes de leer una sola línea.',
+  },
+  {
+    stat: '40%',
+    label: 'Fuga de prospectos',
+    desc: 'Si tu página tarda más de tres segundos en abrir, casi la mitad se va a la competencia sin volver.',
+  },
+  {
+    stat: '0',
+    label: 'Visibilidad',
+    desc: 'Sin estructura técnica ni semántica, tu marca no aparece ni en la segunda página de Google.',
+  },
+];
+---
+
+<section id="costo" class="band border-t border-line">
+  <div class="shell">
+    <div class="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-end md:gap-16">
+      <div>
+        <p class="ficha text-walnut" data-reveal>El costo</p>
+        <h2 class="display mt-6 max-w-[22ch]" data-reveal>
+          Lo que hoy te está costando ese sitio que no has tocado.
+        </h2>
+      </div>
+      <p class="body-copy text-ink-soft md:pb-2" data-reveal>
+        Tres cifras que resumen lo que pasa mientras tu web sigue contando una versión vieja de tu negocio. Antes de mirar cuánto cuesta relanzar, conviene mirar cuánto sale no hacerlo.
+      </p>
+    </div>
+
+    <ul class="mt-16 grid border-t border-b border-line md:mt-20 md:grid-cols-3">
+      {
+        costos.map((c, i) => (
+          <li
+            class:list={[
+              'py-10 px-4 md:px-8',
+              i > 0 && 'border-t border-line md:border-t-0 md:border-l',
+            ]}
+            data-reveal
+          >
+            <p class="display text-ink">{c.stat}</p>
+            <p class="ficha mt-7 text-walnut">{c.label}</p>
+            <p class="body-copy mt-4 max-w-[34ch] text-ink-soft">{c.desc}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-16 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between md:mt-20" data-reveal>
+      <p class="body-copy max-w-[40ch] text-ink-soft">
+        Si alguna de esas cifras describe tu sitio, el primer paso es el diagnóstico. No cobramos por mirarlo.
+      </p>
+      <a href="#contacto-form" class="btn-base btn-solid">
+        Pedir mi diagnóstico
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

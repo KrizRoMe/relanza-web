@@ -1,0 +1,74 @@
+---
+const rows = [
+  {
+    sintoma: 'Se ve hecho hace diez años',
+    consecuencia: 'El visitante asume que el negocio también se quedó ahí.',
+  },
+  {
+    sintoma: 'Tarda en abrir en el celular',
+    consecuencia: 'Se van antes de leer la primera línea. No hay segunda oportunidad.',
+  },
+  {
+    sintoma: 'Lo dice todo al mismo tiempo',
+    consecuencia: 'Nadie entiende a qué te dedicas ni qué debería hacer después.',
+  },
+  {
+    sintoma: 'No hay una acción evidente',
+    consecuencia: 'Las visitas nunca se convierten en conversaciones.',
+  },
+  {
+    sintoma: 'Se editó tantas veces que perdió su forma',
+    consecuencia: 'La marca ya no se reconoce a sí misma en su propia web.',
+  },
+  {
+    sintoma: 'Nadie puede actualizarlo sin romperlo',
+    consecuencia: 'El sitio queda congelado mientras la empresa sigue avanzando.',
+  },
+];
+---
+
+<section id="diagnostico" class="band border-t border-line">
+  <div class="shell">
+    <div class="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-end md:gap-16">
+      <div>
+        <p class="ficha text-walnut" data-reveal>Diagnóstico</p>
+        <h2 class="display mt-6 max-w-[22ch]" data-reveal>
+          Ningún sitio envejece de golpe. Deja de funcionar de a pocos.
+        </h2>
+      </div>
+      <p class="body-copy text-ink-soft md:pb-2" data-reveal>
+        Casi nunca hay una falla. Hay seis pequeñas señales que, juntas, hacen que un buen negocio
+        parezca menos de lo que es. Estas son las que encontramos una y otra vez.
+      </p>
+    </div>
+
+    <ul class="mt-14 md:mt-20">
+      {
+        rows.map((r) => (
+          <li class="group">
+            <div class="rule-h" data-reveal="rule" />
+            <div class="grid gap-2 py-7 transition-[padding] duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:pl-2 md:grid-cols-[0.95fr_1.05fr] md:gap-12 md:py-9">
+              <p
+                class="max-w-[26ch] text-[1.375rem] leading-[1.15] tracking-[-0.028em] md:text-[1.625rem]"
+                data-reveal
+              >
+                {r.sintoma}
+              </p>
+              <p
+                class="flex max-w-[46ch] items-start gap-4 text-[0.9375rem] leading-relaxed text-ink-soft md:text-base"
+                data-reveal
+              >
+                <span
+                  class="mt-[0.55em] h-px w-6 shrink-0 bg-brass transition-[width] duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:w-10"
+                  aria-hidden="true"
+                />
+                {r.consecuencia}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="rule-h" data-reveal="rule"></div>
+  </div>
+</section>

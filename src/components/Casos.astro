@@ -1,0 +1,97 @@
+---
+import MiniComparator from './MiniComparator.tsx';
+
+interface Caso {
+  sector: string;
+  de: string;
+  a: string;
+  offset: string;
+  caseKey: 'carpinteria' | 'contable' | 'clinica' | 'taller';
+}
+
+const casos: Caso[] = [
+  {
+    sector: 'Carpintería a medida',
+    de: 'Catálogo interminable, tabla de precios y contador de visitas.',
+    a: 'Tres líneas de producto, plazos visibles y una sola acción: cotizar.',
+    offset: '',
+    caseKey: 'carpinteria',
+  },
+  {
+    sector: 'Estudio contable',
+    de: 'Muro de texto legal, sello NUEVO y formulario de boletín.',
+    a: 'Una promesa que se entiende y el servicio que la sostiene.',
+    offset: 'md:mt-16',
+    caseKey: 'contable',
+  },
+  {
+    sector: 'Clínica dental',
+    de: 'Cian saturado, sonriente y formulario de cita con calendario 2012.',
+    a: 'Una imagen, un horario y un botón para reservar.',
+    offset: 'md:mt-32',
+    caseKey: 'clinica',
+  },
+  {
+    sector: 'Estudio de arquitectura',
+    de: 'Fondo carbón, slider jQuery, badges y tuiter heredado.',
+    a: 'Tres proyectos, dirección y la manera de empezar una obra.',
+    offset: 'md:mt-48',
+    caseKey: 'taller',
+  },
+];
+---
+
+<section id="casos" class="band border-t border-line">
+  <div class="shell">
+    <div class="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-end md:gap-16">
+      <div>
+        <p class="ficha text-walnut" data-reveal>Transformaciones</p>
+        <h2 class="display mt-6 max-w-[20ch]" data-reveal>
+          Siempre es el mismo negocio. Nunca la misma impresión.
+        </h2>
+      </div>
+      <p class="body-copy text-ink-soft md:pb-2" data-reveal>
+        Cada relanzamiento empieza por quitar. Lo que queda es lo que el cliente necesitaba ver desde
+        el principio. Arrastra la costura de cada uno para verlo.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-x-8 gap-y-20 md:mt-20 md:grid-cols-2">
+      {
+        casos.map((c) => (
+          <article class:list={['mini-card', c.offset]} data-reveal>
+            <MiniComparator client:visible case={c.caseKey} />
+            <h3 class="mt-10 text-[1.375rem] leading-tight tracking-[-0.028em]">{c.sector}</h3>
+            <dl class="mt-5 border-t border-line">
+              <div class="flex gap-4 border-b border-line py-3.5">
+                <dt class="ficha w-6 shrink-0 pt-1 text-ink-soft">De</dt>
+                <dd class="text-[0.875rem] leading-snug text-ink-soft">{c.de}</dd>
+              </div>
+              <div class="flex gap-4 py-3.5">
+                <dt class="ficha w-6 shrink-0 pt-1 text-walnut">A</dt>
+                <dd class="text-[0.875rem] leading-snug">{c.a}</dd>
+              </div>
+            </dl>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="ficha mt-20 flex items-center gap-3 text-ink-soft md:mt-24" data-reveal>
+      <span class="h-px w-10 shrink-0 bg-brass" aria-hidden="true"></span>
+      Piezas de demostración construidas para mostrar el método
+    </p>
+
+    <div class="mt-12 flex flex-col items-start gap-5 border-t border-line pt-12 sm:flex-row sm:items-center sm:justify-between md:mt-16" data-reveal>
+      <p class="body-copy max-w-[40ch] text-ink-soft">
+        ¿Tu sitio se parece a alguno de estos? Contanos cuál y armamos el diagnóstico.
+      </p>
+      <a href="#contacto-form" class="btn-base btn-solid">
+        Empezar por mi sitio
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

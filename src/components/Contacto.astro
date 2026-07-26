@@ -1,0 +1,236 @@
+---
+/**
+ * Contacto — formulario que abre WhatsApp con los datos del visitante.
+ *
+ * Es un formulario real, no decorativo: hace la misma tarea que el
+ * botón directo de WhatsApp pero le da al visitante la posibilidad de
+ * contar su caso antes de escribir. El handler arma un mensaje con
+ * los campos completados, lo codifica y abre wa.me.
+ *
+ * Estilo: campos con regla de 1px, papel como fondo, walnut para el
+ * kicker, ink para el CTA, brass para los acentos. Sin selects nativos
+ * con estilo del sistema operativo: se dibujan a mano.
+ */
+const sectors = [
+  'Carpintería / Mobiliario',
+  'Estudio profesional',
+  'Clínica / Salud',
+  'Arquitectura / Diseño',
+  'Comercio / Retail',
+  'Educación / Capacitación',
+  'Restaurante / Gastronomía',
+  'Belleza / Bienestar',
+  'Otro',
+];
+---
+
+<section id="contacto-form" class="band border-t border-line bg-surface">
+  <div class="shell">
+    <div class="grid gap-12 md:grid-cols-[0.92fr_1.08fr] md:gap-20">
+      <div>
+        <p class="ficha text-walnut" data-reveal>Formulario</p>
+        <h2 class="display mt-6 max-w-[20ch]" data-reveal>
+          Solicita tu diagnóstico gratuito.
+        </h2>
+        <p class="body-copy mt-8 max-w-[40ch] text-ink-soft" data-reveal>
+          Cuéntanos sobre tu sitio. Lo que escribas se envía directamente a WhatsApp, en el mismo canal donde atendemos el diagnóstico. Tomamos un minuto de tu lado y dos o tres días del nuestro para devolverte un informe corto.
+        </p>
+
+        <dl class="mt-10 space-y-7">
+          <div class="border-t border-line pt-5" data-reveal>
+            <dt class="ficha text-ink-soft">01 — Envío</dt>
+            <dd class="mt-2 text-[0.9375rem] leading-snug">
+              El formulario abre WhatsApp con tu mensaje ya redactado.
+            </dd>
+          </div>
+          <div class="border-t border-line pt-5" data-reveal>
+            <dt class="ficha text-ink-soft">02 — Respuesta</dt>
+            <dd class="mt-2 text-[0.9375rem] leading-snug">
+              Te respondemos el mismo día hábil con dos o tres preguntas
+              más, si hace falta.
+            </dd>
+          </div>
+          <div class="border-t border-line pt-5" data-reveal>
+            <dt class="ficha text-ink-soft">03 — Diagnóstico</dt>
+            <dd class="mt-2 text-[0.9375rem] leading-snug">
+              Revisamos tu sitio y te mandamos un informe corto. No
+              cobramos por este paso.
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <form
+        id="contacto-form-el"
+        class="border border-line bg-card p-6 md:p-10"
+        novalidate
+        data-reveal
+      >
+        <div class="grid gap-6 md:grid-cols-2">
+          <label class="cf-field md:col-span-1">
+            <span class="cf-label">Nombre</span>
+            <input
+              type="text"
+              name="nombre"
+              required
+              autocomplete="name"
+              class="cf-input"
+              placeholder="Cómo te llamamos"
+            />
+          </label>
+
+          <label class="cf-field md:col-span-1">
+            <span class="cf-label">Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="cf-input"
+              placeholder="tucorreo@empresa.com"
+            />
+          </label>
+
+          <label class="cf-field md:col-span-1">
+            <span class="cf-label">Teléfono</span>
+            <input
+              type="tel"
+              name="telefono"
+              autocomplete="tel"
+              class="cf-input"
+              placeholder="(01) 000-0000"
+            />
+          </label>
+
+          <label class="cf-field md:col-span-1">
+            <span class="cf-label">Sitio web actual</span>
+            <input
+              type="url"
+              name="sitio"
+              class="cf-input"
+              placeholder="https://"
+            />
+          </label>
+
+          <label class="cf-field md:col-span-2">
+            <span class="cf-label">Sector</span>
+            <div class="cf-select">
+              <select name="sector" required class="cf-input cf-select-native">
+                <option value="" disabled selected>Elegir un sector</option>
+                {
+                  sectors.map((s) => (
+                    <option value={s}>{s}</option>
+                  ))
+                }
+              </select>
+              <svg
+                class="cf-select-caret"
+                width="12"
+                height="8"
+                viewBox="0 0 12 8"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1.5 6 6.5 11 1.5"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </label>
+
+          <label class="cf-field md:col-span-2">
+            <span class="cf-label">¿Qué te preocupa del sitio?</span>
+            <textarea
+              name="mensaje"
+              rows="4"
+              class="cf-input cf-textarea"
+              placeholder="Lo que te quita el sueño. Sin formulario ideal."
+            ></textarea>
+          </label>
+        </div>
+
+        <div class="mt-8 flex flex-col-reverse items-start gap-5 md:flex-row md:items-center md:justify-between">
+          <p class="ficha text-ink-soft">
+            Al enviar se abre WhatsApp con tu mensaje
+          </p>
+          <button type="submit" class="btn-base btn-solid" data-cf-submit>
+            Enviar diagnóstico
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path
+                d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <p
+          id="contacto-feedback"
+          class="ficha mt-6 hidden text-walnut"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="h-px w-6 bg-brass" aria-hidden="true"></span>
+          <span data-cf-feedback>Listo. Te respondemos hoy.</span>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contacto-form-el') as HTMLFormElement | null;
+  const feedback = document.getElementById('contacto-feedback');
+  const feedbackText = feedback?.querySelector('[data-cf-feedback]');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const nombre = String(data.get('nombre') ?? '').trim();
+      const email = String(data.get('email') ?? '').trim();
+      const telefono = String(data.get('telefono') ?? '').trim();
+      const sitio = String(data.get('sitio') ?? '').trim();
+      const sector = String(data.get('sector') ?? '').trim();
+      const mensaje = String(data.get('mensaje') ?? '').trim();
+
+      if (!nombre || !email || !sector) {
+        if (feedback && feedbackText) {
+          feedbackText.textContent = 'Faltan nombre, email o sector.';
+          feedback.classList.remove('hidden');
+        }
+        return;
+      }
+
+      const partes = [
+        `Hola, soy ${nombre}.`,
+        '',
+        `Quiero relanzar la web de mi negocio.`,
+        sector ? `Sector: ${sector}.` : '',
+        sitio ? `Sitio actual: ${sitio}` : '',
+        telefono ? `Teléfono: ${telefono}` : '',
+        email ? `Email: ${email}` : '',
+        '',
+        mensaje ? `Sobre el sitio: ${mensaje}` : 'Sobre el sitio: (sin mensaje adicional).',
+      ].filter(Boolean);
+
+      const url =
+        'https://wa.me/51986550234?text=' + encodeURIComponent(partes.join('\n'));
+
+      window.open(url, '_blank', 'noopener,noreferrer');
+
+      if (feedback && feedbackText) {
+        feedbackText.textContent = 'Listo. Te respondemos hoy.';
+        feedback.classList.remove('hidden');
+      }
+      form.reset();
+    });
+  }
+</script>

@@ -1,0 +1,118 @@
+---
+const href =
+  'https://wa.me/51986550234?text=' +
+  encodeURIComponent('Hola, quiero relanzar la web de mi negocio.');
+---
+
+<div
+  id="wa-dock"
+  class="fixed right-0 bottom-0 z-[80] flex items-end gap-3 p-5 pr-[max(1.25rem,env(safe-area-inset-right))] pb-[max(1.25rem,env(safe-area-inset-bottom))] print:hidden"
+  data-open="false"
+>
+  <div
+    id="wa-bubble"
+    class="relative w-[15rem] rounded-[3px] border border-line bg-card px-4 py-3.5 opacity-0 shadow-plate transition-[opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] max-[380px]:hidden"
+    style="transform: translateY(6px)"
+  >
+    <button
+      id="wa-close"
+      type="button"
+      aria-label="Cerrar el mensaje de WhatsApp"
+      class="absolute -top-2.5 -right-2.5 grid h-6 w-6 place-items-center rounded-full border border-line bg-card text-ink-soft transition-colors duration-200 hover:text-ink"
+    >
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
+        <path
+          d="M1 1l7 7M8 1l-7 7"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <p class="text-[0.8125rem] leading-snug text-ink-soft">
+      ¿Tu sitio ya no te representa? <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-draw font-medium text-walnut">Escríbeme por WhatsApp →</a
+      >
+    </p>
+    <span
+      class="absolute -right-[5px] bottom-5 h-2.5 w-2.5 rotate-45 border-r border-t border-line bg-card"
+      aria-hidden="true"></span>
+  </div>
+
+  <a
+    id="wa-btn"
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escribir por WhatsApp al +51 986 550 234"
+    class="grid h-14 w-14 shrink-0 scale-90 place-items-center rounded-full bg-[#25D366] text-white opacity-0 shadow-lift transition-[opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:scale-105 md:h-[3.75rem] md:w-[3.75rem]"
+  >
+    <svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.35-.53.05-1.03.24-3.47-.72-2.94-1.16-4.78-4.2-4.92-4.4-.14-.19-1.16-1.55-1.16-2.96 0-1.4.73-2.09 1-2.38.26-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.15.12.32.02.51-.09.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.58.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.44.29.15.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.39-.24.65-.14.27.09 1.69.79 1.98.94.29.14.48.22.55.34.07.13.07.75-.17 1.43Z"
+      ></path>
+    </svg>
+  </a>
+</div>
+
+<script>
+  const dock = document.getElementById('wa-dock');
+  const btn = document.getElementById('wa-btn');
+  const bubble = document.getElementById('wa-bubble');
+  const close = document.getElementById('wa-close');
+
+  const show = (el: HTMLElement | null) => {
+    if (!el) return;
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  };
+
+  if (btn) {
+    window.setTimeout(() => show(btn), 700);
+  }
+  if (bubble && sessionStorage.getItem('wa-bubble') !== 'off') {
+    window.setTimeout(() => show(bubble), 1100);
+  }
+
+  close?.addEventListener('click', () => {
+    if (!bubble) return;
+    bubble.style.opacity = '0';
+    bubble.style.transform = 'translateY(6px)';
+    window.setTimeout(() => bubble.remove(), 450);
+    sessionStorage.setItem('wa-bubble', 'off');
+  });
+
+  // Se aparta si algo se abre por encima (drawer, modal, menú) o si ya
+  // estamos sobre la sección de contacto, para no tapar el teléfono.
+  let overlay = false;
+  let atContact = false;
+
+  const sync = () => {
+    const hide = overlay || atContact;
+    dock?.style.setProperty('opacity', hide ? '0' : '1');
+    dock?.style.setProperty('pointer-events', hide ? 'none' : 'auto');
+    dock?.setAttribute('aria-hidden', String(hide));
+  };
+
+  new MutationObserver(() => {
+    overlay = !!document.querySelector('[data-overlay-open="true"], dialog[open]');
+    sync();
+  }).observe(document.documentElement, {
+    attributes: true,
+    subtree: true,
+    attributeFilter: ['data-overlay-open', 'open'],
+  });
+
+  const contact = document.getElementById('contacto');
+  if (contact) {
+    new IntersectionObserver(
+      ([entry]) => {
+        atContact = entry.intersectionRatio > 0.28;
+        sync();
+      },
+      { threshold: [0, 0.28, 0.5] }
+    ).observe(contact);
+  }
+</script>
